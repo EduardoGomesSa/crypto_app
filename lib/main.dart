@@ -1,8 +1,14 @@
+import 'package:crypto_app/src/bindings/crypto_binding.dart';
 import 'package:crypto_app/src/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  await dotenv.load(fileName: ".env");
+
   runApp(const MyApp());
 }
 
@@ -24,6 +30,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
+      initialBinding: CryptoBinding(),
       initialRoute: AppRoutes.base,
       getPages: AppPages. pages,
     );
