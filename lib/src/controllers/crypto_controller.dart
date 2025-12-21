@@ -14,6 +14,8 @@ class CryptoController extends GetxController {
   });
 
   RxBool isLoading = false.obs;
+  RxList<CryptoModel> listCryptos = RxList<CryptoModel>([]);
+
 
   @override
   void onInit() {
@@ -28,8 +30,7 @@ class CryptoController extends GetxController {
     ApiResult<List<CryptoModel>> result = await repository.getAllCoins();
 
     if (!result.isError) {
-      // round = result.data!;
-      //selectedRound.value = round.season!.currentMatchday!;
+      listCryptos.assignAll(result.data!);
     } else {
       appUtils.showToast(message: result.message!, isError: true);
     }
