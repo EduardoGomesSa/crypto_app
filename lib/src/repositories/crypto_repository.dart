@@ -14,21 +14,18 @@ class CryptoRepository {
   });
 
   Future<ApiResult<List<CryptoModel>>> getAllCoins() async {
-    // String? apiToken = dotenv.env['API_TOKEN'];
-
-    final String endpoint = Url.allCoins;
     final response = await httpManager.requestList(
       url: Url.allCoins,
       method: HttpMethods.get,
     );
 
-    if (response['status'] == 200) {
-      // var rounds = RoundModel.fromMap(convertMap(response));
+    if (response is List && response.isNotEmpty) {
+      var cryptos = CryptoModel.fromList(response);
 
-      return ApiResult<List<CryptoModel>>(data: null);
+      return ApiResult<List<CryptoModel>>(data: cryptos);
     } else {
       return ApiResult<List<CryptoModel>>(
-        message: "Erro ao buscar as rodadas de jogos. Tente novamente!",
+        message: "Erro ao buscar as cryptomoedas. Tente novamente!",
         isError: true,
       );
     }
