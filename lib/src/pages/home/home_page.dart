@@ -9,6 +9,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cryptoController = Get.find<CryptoController>();
+    final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+        GlobalKey<RefreshIndicatorState>();
 
     return Scaffold(
       appBar: AppBar(
@@ -21,12 +23,36 @@ class HomePage extends StatelessWidget {
           );
         }
 
-        return ListView.builder(
-          itemCount: cryptoController.listCryptos.length,
-          itemBuilder: (context, index) {
-            final crypto = cryptoController.listCryptos[index];
-            return CryptoCard(model: crypto);
-          },
+        if(cryptoController.listCryptos.isEmpty) {
+          return const Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.money_off_outlined,
+                  size: 80,
+                  color: Colors.grey,
+                ),
+                SizedBox(height: 16),
+                Text(
+                  'Nenhuma criptomoeda encontrada',
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
+              ],
+            ),
+          );
+        }
+
+        return RefreshIndicator(
+          key: _refreshIndicatorKey,
+          onRefresh: () async => cryptoController.getAllCoins(),
+          child: ListView.builder(
+            itemCount: cryptoController.listCryptos.length,
+            itemBuilder: (context, index) {
+              final crypto = cryptoController.listCryptos[index];
+              return CryptoCard(model: crypto);
+            },
+          ),
         );
       }),
     );
