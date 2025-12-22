@@ -21,12 +21,14 @@ class CryptoController extends GetxController {
   RxList<CryptoModel> listCryptos = RxList<CryptoModel>([]);
   RxList<CryptoChartPointModel> listChartPoints =
       RxList<CryptoChartPointModel>([]);
+  RxList<CryptoModel> filteredCryptos = <CryptoModel>[].obs;
 
   @override
   void onInit() {
     super.onInit();
 
     getAllCoins();
+    filteredCryptos.assignAll(listCryptos);
   }
 
   getAllCoins() async {
@@ -67,5 +69,23 @@ class CryptoController extends GetxController {
     }
 
     isLoading.value = false;
+  }
+
+  void searchCryptosByParam(String searchTerm) {
+    final query = searchTerm.toLowerCase().trim();
+
+    if (query.isEmpty) {
+      filteredCryptos.assignAll(listCryptos);
+      return;
+    }
+
+    filteredCryptos.assignAll(
+      listCryptos.where((crypto) {
+        final name = crypto.name?.toLowerCase() ?? '';
+        final symbol = crypto.symbol?.toLowerCase() ?? '';
+
+        return name.contains(query) || symbol.contains(query);
+      }).toList(),
+    );
   }
 }
