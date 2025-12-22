@@ -84,4 +84,14 @@ class FavoriteController extends GetxController {
       model.setIsFavorite(false);
     }
   }
+
+  Future<void> removeAllFavorites() async {
+    await repository.removeAllFavorites();
+
+    for (final crypto in favoriteCryptos) {
+      crypto.setIsFavorite(false);
+    }
+
+    favoriteCryptos.clear();
+  }
 }

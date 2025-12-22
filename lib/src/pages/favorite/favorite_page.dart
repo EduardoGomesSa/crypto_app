@@ -13,6 +13,38 @@ class FavoritePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cryptomoedas Favoritas'),
+        actions: [
+          IconButton(
+            padding: const EdgeInsets.only(right: 25),
+            onPressed: () {
+              Get.dialog(
+                AlertDialog(
+                  title: const Text('Remover favorito'),
+                  content: const Text(
+                    'Deseja realmente remover todos os favoritos?',
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Get.back(),
+                      child: const Text('Cancelar'),
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        favoriteController.removeAllFavorites();
+                        Get.back();
+                      },
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.red,
+                      ),
+                      child: const Text('Remover'),
+                    ),
+                  ],
+                ),
+              );
+            },
+            icon: const Icon(Icons.delete_forever),
+          ),
+        ],
       ),
       body: Obx(() {
         if (favoriteController.isLoading.value) {
@@ -33,7 +65,7 @@ class FavoritePage extends StatelessWidget {
                 ),
                 SizedBox(height: 16),
                 Text(
-                  'Nenhuma criptomoeda favorita adicionada.',
+                  'Nenhuma criptomoeda favorita ainda',
                   style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
               ],

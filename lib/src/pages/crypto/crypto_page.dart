@@ -23,7 +23,10 @@ class CryptoPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(model.name!),
         actions: [
-          FavoriteIconWidget(model: model),
+          Padding(
+            padding: const EdgeInsets.only(right: 25),
+            child: FavoriteIconWidget(model: model),
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -68,7 +71,7 @@ class CryptoPage extends StatelessWidget {
             ),
 
             const SizedBox(height: 4),
-            
+
             Center(
               child: Text(
                 '${model.priceChangePercentage24h!.toStringAsFixed(2)}%',

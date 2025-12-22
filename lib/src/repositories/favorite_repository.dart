@@ -95,4 +95,9 @@ class FavoriteRepository {
 
     return result.map((e) => e['id'] as String).toList();
   }
+
+  Future<void> removeAllFavorites() async {
+    final db = await Db.connection();
+    await db.delete('favorite_cryptos');
+  }
 }
