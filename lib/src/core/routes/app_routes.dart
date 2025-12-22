@@ -1,3 +1,4 @@
+import 'package:crypto_app/src/bindings/favorite_binding.dart';
 import 'package:crypto_app/src/pages/base_page.dart';
 import 'package:crypto_app/src/pages/favorite/favorite_page.dart';
 import 'package:crypto_app/src/pages/home/home_page.dart';
@@ -8,6 +9,7 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.base,
       page: () => const BasePage(),
+      binding: FavoriteBinding()
     ),
     GetPage(
       name: AppRoutes.home,
@@ -16,6 +18,7 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.favorite,
       page: () => const FavoritePage(),
+      binding: FavoriteBinding(),
     ),
   ];
 }

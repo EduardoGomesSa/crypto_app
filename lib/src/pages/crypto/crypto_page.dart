@@ -1,3 +1,4 @@
+import 'package:crypto_app/src/core/widgets/favorite_icon_widget.dart';
 import 'package:crypto_app/src/models/crypto_model.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,9 @@ class CryptoPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(model.name!),
+        actions: [
+          FavoriteIconWidget(model: model),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class CryptoModel {
   final String? id;
   final String? symbol;
@@ -26,6 +28,7 @@ class CryptoModel {
   final Map<String, dynamic>? roi;
   final DateTime? lastUpdated;
   final double? priceChangePercentage1hInCurrency;
+  RxBool isFavorite;
 
   CryptoModel({
     this.id,
@@ -55,7 +58,8 @@ class CryptoModel {
     this.roi,
     this.lastUpdated,
     this.priceChangePercentage1hInCurrency,
-  });
+    bool isFavorite = false,
+  }) : isFavorite = RxBool(isFavorite);
 
   factory CryptoModel.fromMap(Map<String, dynamic> map) {
     return CryptoModel(
@@ -91,5 +95,9 @@ class CryptoModel {
 
   static List<CryptoModel> fromList(List<dynamic> list) {
     return list.map((item) => CryptoModel.fromMap(item as Map<String, dynamic>)).toList();
+  }
+
+  void setIsFavorite(bool value) {
+    isFavorite.value = value;
   }
 }
