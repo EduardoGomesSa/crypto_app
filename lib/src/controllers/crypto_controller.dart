@@ -1,5 +1,6 @@
 import 'package:crypto_app/src/core/utils/api_result.dart';
 import 'package:crypto_app/src/core/utils/app_utils.dart';
+import 'package:crypto_app/src/models/crypto_chart_point_model.dart';
 import 'package:crypto_app/src/models/crypto_model.dart';
 import 'package:crypto_app/src/repositories/crypto_repository.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,7 @@ class CryptoController extends GetxController {
 
   RxBool isLoading = false.obs;
   RxList<CryptoModel> listCryptos = RxList<CryptoModel>([]);
-
+  RxList<CryptoChartPointModel> listChartPoints = RxList<CryptoChartPointModel>([]);
 
   @override
   void onInit() {
@@ -31,6 +32,20 @@ class CryptoController extends GetxController {
 
     if (!result.isError) {
       listCryptos.assignAll(result.data!);
+    } else {
+      appUtils.showToast(message: result.message!, isError: true);
+    }
+
+    isLoading.value = false;
+  }
+
+  getChartById(String id) async {
+    isLoading.value = true;
+
+    ApiResult<List<CryptoChartPointModel>> result = await repository.getChart(cryptoId: id);
+
+    if (!result.isError) {
+      listChartPoints.assignAll(result.data!);
     } else {
       appUtils.showToast(message: result.message!, isError: true);
     }

@@ -7,10 +7,14 @@ class CryptoChartPointModel {
     required this.price,
   });
 
-  factory CryptoChartPointModel.fromList(List item) {
+  factory CryptoChartPointModel.fromMap(List item) {
     return CryptoChartPointModel(
       time: DateTime.fromMillisecondsSinceEpoch(item[0]),
       price: (item[1] as num).toDouble(),
     );
+  }
+
+  static List<CryptoChartPointModel> fromList(List list) {
+    return list.map((item) => CryptoChartPointModel.fromMap(item)).toList();
   }
 }
