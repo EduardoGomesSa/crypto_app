@@ -28,14 +28,9 @@ class HttpManager {
       );
 
       return response.data;
-    } on DioException catch (error) {
-      print('DIO ERROR TYPE => ${error.type}');
-      print('DIO ERROR => ${error.message}');
-      print('DIO RESPONSE => ${error.response}');
+    } on DioException {
       rethrow;
-    } catch (error, stack) {
-      print('GENERIC ERROR => $error');
-      print(stack);
+    } catch (error) {
       rethrow;
     }
   }
@@ -67,14 +62,9 @@ class HttpManager {
       );
 
       return response.data;
-    } on DioException catch (error) {
-      print('DIO ERROR TYPE => ${error.type}');
-      print('DIO ERROR => ${error.message}');
-      print('DIO RESPONSE => ${error.response}');
+    } on DioException {
       rethrow;
-    } catch (error, stack) {
-      print('GENERIC ERROR => $error');
-      print(stack);
+    } catch (error) {
       rethrow;
     }
   }
