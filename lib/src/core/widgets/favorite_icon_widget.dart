@@ -19,9 +19,35 @@ class FavoriteIconWidget extends StatelessWidget {
     if (alreadyFavorite) {
       return IconButton(
           onPressed: () {
-            controller.controlFavorite(model);
+            Get.dialog(
+              AlertDialog(
+                title: const Text('Remover favorito'),
+                content: Text(
+                  'Deseja realmente remover ${model.name} dos favoritos?',
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => Get.back(),
+                    child: const Text('Cancelar'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      controller.controlFavorite(model);
+                      Get.back();
+                    },
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.red,
+                    ),
+                    child: const Text('Remover'),
+                  ),
+                ],
+              ),
+            );
           },
-          icon: Icon(Icons.delete, color: Colors.red.shade300,));
+          icon: Icon(
+            Icons.delete,
+            color: Colors.red.shade300,
+          ));
     }
 
     return Obx(() {
@@ -29,7 +55,8 @@ class FavoriteIconWidget extends StatelessWidget {
         onPressed: () {
           controller.controlFavorite(model);
         },
-        icon: Icon(model.isFavorite.value ? Icons.star : Icons.star_border, color: Colors.yellow),
+        icon: Icon(model.isFavorite.value ? Icons.star : Icons.star_border,
+            color: Colors.yellow),
       );
     });
   }

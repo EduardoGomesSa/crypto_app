@@ -41,7 +41,8 @@ class FavoriteRepository {
       return ApiResult(data: listTasks);
     }
 
-    String message = "Não foi possível buscar suas cryptomoedas favoritas. Tente novamente!";
+    String message =
+        "Não foi possível buscar suas cryptomoedas favoritas. Tente novamente!";
     return ApiResult<List<CryptoModel>>(message: message, isError: true);
   }
 
@@ -80,5 +81,18 @@ class FavoriteRepository {
         .delete('favorite_cryptos', where: 'id = ?', whereArgs: [cryptoId]);
 
     return deleted;
+  }
+
+  Future<List<String>> getFavoriteIds() async {
+    final db = await Db.connection();
+
+    final result = await db.query(
+      'favorite_cryptos',
+      columns: ['id'],
+      where: 'is_favorite = ?',
+      whereArgs: [1],
+    );
+
+    return result.map((e) => e['id'] as String).toList();
   }
 }

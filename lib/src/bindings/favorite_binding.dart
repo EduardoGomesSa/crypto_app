@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class FavoriteBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put(FavoriteRepository());
+    // Get.put(FavoriteRepository());
     Get.put(FavoriteController(
       repository: Get.find<FavoriteRepository>(),
       cryptoRepository: Get.find<CryptoRepository>(),

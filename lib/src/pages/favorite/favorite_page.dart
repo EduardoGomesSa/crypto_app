@@ -12,7 +12,7 @@ class FavoritePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Favorite Page'),
+        title: const Text('Cryptomoedas Favoritas'),
       ),
       body: Obx(() {
         if (favoriteController.isLoading.value) {
@@ -23,7 +23,21 @@ class FavoritePage extends StatelessWidget {
 
         if (favoriteController.favoriteCryptos.isEmpty) {
           return const Center(
-            child: Text('No favorite cryptocurrencies found.'),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.star_border,
+                  size: 80,
+                  color: Colors.grey,
+                ),
+                SizedBox(height: 16),
+                Text(
+                  'Nenhuma criptomoeda favorita adicionada.',
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
+              ],
+            ),
           );
         }
 

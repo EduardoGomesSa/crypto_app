@@ -84,6 +84,4 @@ class FavoriteController extends GetxController {
       model.setIsFavorite(false);
     }
   }
-
-  //isFavorite()
 }

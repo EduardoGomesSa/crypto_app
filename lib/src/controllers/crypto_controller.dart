@@ -3,20 +3,24 @@ import 'package:crypto_app/src/core/utils/app_utils.dart';
 import 'package:crypto_app/src/models/crypto_chart_point_model.dart';
 import 'package:crypto_app/src/models/crypto_model.dart';
 import 'package:crypto_app/src/repositories/crypto_repository.dart';
+import 'package:crypto_app/src/repositories/favorite_repository.dart';
 import 'package:get/get.dart';
 
 class CryptoController extends GetxController {
   final CryptoRepository repository;
+  final FavoriteRepository favoriteRepository;
   final AppUtils appUtils;
 
   CryptoController({
     required this.repository,
+    required this.favoriteRepository,
     required this.appUtils,
   });
 
   RxBool isLoading = false.obs;
   RxList<CryptoModel> listCryptos = RxList<CryptoModel>([]);
-  RxList<CryptoChartPointModel> listChartPoints = RxList<CryptoChartPointModel>([]);
+  RxList<CryptoChartPointModel> listChartPoints =
+      RxList<CryptoChartPointModel>([]);
 
   @override
   void onInit() {
@@ -29,9 +33,20 @@ class CryptoController extends GetxController {
     isLoading.value = true;
 
     ApiResult<List<CryptoModel>> result = await repository.getAllCoins();
+    final favoriteIds = await favoriteRepository.getFavoriteIds();
 
     if (!result.isError) {
-      listCryptos.assignAll(result.data!);
+      final favoriteSet = favoriteIds.toSet();
+
+      final finalListCoins = result.data!;
+
+      for (final crypto in finalListCoins) {
+        if (favoriteSet.contains(crypto.id)) {
+          crypto.setIsFavorite(true);
+        }
+      }
+
+      listCryptos.assignAll(finalListCoins);
     } else {
       appUtils.showToast(message: result.message!, isError: true);
     }
@@ -42,7 +57,8 @@ class CryptoController extends GetxController {
   getChartById(String id) async {
     isLoading.value = true;
 
-    ApiResult<List<CryptoChartPointModel>> result = await repository.getChart(cryptoId: id);
+    ApiResult<List<CryptoChartPointModel>> result =
+        await repository.getChart(cryptoId: id);
 
     if (!result.isError) {
       listChartPoints.assignAll(result.data!);

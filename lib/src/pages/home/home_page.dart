@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Page'),
+        title: const Text('Todas as Cryptomoedas'),
       ),
       body: Obx(() {
         if (cryptoController.isLoading.value) {
