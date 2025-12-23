@@ -39,7 +39,7 @@ class FavoriteController extends GetxController {
         favoriteCryptos.add(model);
       } else {
         appUtils.showToast(
-            message: "Não foi possível favoritar este time. Tente novamente!",
+            message: "Não foi possível favoritar esta cryptomoeda. Tente novamente!",
             isError: true);
       }
     } else {
@@ -51,7 +51,7 @@ class FavoriteController extends GetxController {
       } else {
         appUtils.showToast(
             message:
-                "Não foi possível desfavoritar este time. Tente novamente!",
+                "Não foi possível desfavoritar esta cryptomoeda. Tente novamente!",
             isError: true);
       }
     }

@@ -23,7 +23,7 @@ class FavoriteRepository {
     }
 
     return ApiResult(
-      message: "Não foi possível buscar esta tarefa. Tente novamente",
+      message: "Não foi possível buscar esta cryptomoeda. Tente novamente",
       isError: true,
     );
   }
@@ -69,7 +69,7 @@ class FavoriteRepository {
 
     return ApiResult<bool>(
       data: false,
-      message: "Não foi possível cadastrar a tarefa. Tente novamente!",
+      message: "Não foi possível cadastrar a cryptomoeda. Tente novamente!",
       isError: true,
     );
   }
