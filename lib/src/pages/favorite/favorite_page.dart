@@ -1,5 +1,5 @@
 import 'package:crypto_app/src/controllers/favorite_controller.dart';
-import 'package:crypto_app/src/core/widgets/favorite_icon_widget.dart';
+import 'package:crypto_app/src/pages/favorite/widgets/crypto_favorite_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -77,19 +77,7 @@ class FavoritePage extends StatelessWidget {
           itemCount: favoriteController.favoriteCryptos.length,
           itemBuilder: (context, index) {
             final crypto = favoriteController.favoriteCryptos[index];
-            return ListTile(
-              leading: Image.network(
-                crypto.image!,
-                width: 40,
-                height: 40,
-              ),
-              title: Text(crypto.name!),
-              subtitle: Text('Symbol: ${crypto.symbol!}'),
-              trailing: FavoriteIconWidget(
-                model: crypto,
-                alreadyFavorite: true,
-              ),
-            );
+            return CryptoFavoriteCard(model: crypto);
           },
         );
       }),
