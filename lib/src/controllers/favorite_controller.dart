@@ -67,9 +67,7 @@ class FavoriteController extends GetxController {
 
       if (!cryptos.isError) {
         favoriteCryptos.assignAll(cryptos.data!);
-      } else {
-        appUtils.showToast(message: cryptos.message!, isError: true);
-      }
+      } 
     } finally {
       isLoading.value = false;
     }
