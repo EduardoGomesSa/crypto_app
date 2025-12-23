@@ -6,89 +6,123 @@
 - [Tecnologias](#tecnologias)
 - [Arquitetura](#arquitetura)
 - [Telas](#telas)
-- [Observação](#observação)
 
 ## Descrição
-<p>
+Jornada do Usuário: BrasilCripto
 
-Este teste técnico tem como objetivo representar desafios que vivemos diariamente na empresa. O teste só vai ser aceito se todos os critérios de aceite forem preenchidos, pessoas com o teste incompleto não passarão para próxima etapa.
+1. Pesquisar Criptomoedas
+Como usuário, quero pesquisar criptomoedas pelo nome ou símbolo para obter
+informações detalhadas sobre elas.
+Motivação: Desejo acompanhar o mercado e descobrir criptomoedas de interesse
+rapidamente.
+Critérios de Aceitação:
+● O sistema deve oferecer um campo de busca na tela inicial para procurar
+criptomoedas.
+● Os resultados devem incluir informações como preço atual, variação percentual,
+volume de mercado e gráfico de desempenho.
+● Caso nenhuma criptomoeda seja encontrada, uma mensagem de "Nenhuma
+criptomoeda encontrada" deve ser exibida.
 
-Você deve construir uma pequena aplicação de e-commerce whitelabel. Dois clientes querem montar um site para vender seus produtos, essas lojas vão consumir as informações disponibilizadas por 2 fornecedores.
-</p>
-<p>
-  
-  ### Frontend
+2. Adicionar Criptomoedas Favoritas
+Como usuário, quero poder salvar criptomoedas como favoritas para acessá-las facilmente
+no futuro.
 
-Um dos nossos projetos consiste de um mesmo sistema ser utilizado por vários clientes e a essa estrutura damos o nome de **Whitelabel**. 
+Motivação: Desejo criar uma lista personalizada das moedas que acompanho
+regularmente.
+Critérios de Aceitação:
+● Após realizar uma busca, o usuário deve ver a opção de "Adicionar aos Favoritos"
+em cada criptomoeda listada.
+● Ao clicar em "Adicionar aos Favoritos", a criptomoeda deve ser armazenada em uma
+lista local.
+● A lista de favoritos deve ser persistente, mesmo que o aplicativo seja recarregado.
 
-Para que essa estrutura funcione é necessário que na api tenhamos uma tabela **clients** que armazene uma URL específica de cada cliente.
+3. Excluir Criptomoedas Favoritas
+Como usuário, quero poder excluir criptomoedas da minha lista de favoritos para manter
+apenas aquelas que realmente acompanho.
+Motivação: Quero manter minha lista organizada e relevante às minhas necessidades.
+Critérios de Aceitação:
+● O usuário deve conseguir visualizar a lista de favoritos em uma aba separada.
+● Cada moeda na lista deve ter a opção de exclusão.
+● Antes de excluir, uma mensagem de confirmação deve aparecer.
+● Após a exclusão, a moeda deve desaparecer imediatamente da lista de favoritos.
 
-<aside>
-❓
+4. Visualizar Detalhes de uma Criptomoeda
+Como usuário, quero poder ver informações detalhadas sobre uma criptomoeda específica
+para analisar seu desempenho.
+Motivação: Desejo avaliar cada moeda com mais profundidade antes de decidir investir ou
+acompanhar.
+Critérios de Aceitação:
+● Ao clicar em uma criptomoeda (na lista de resultados ou favoritos), o usuário deve
+ser redirecionado para uma tela de detalhes.
+● A tela de detalhes deve exibir informações como preço, volume de mercado, gráficos
+de variação e descrição do projeto.
 
-Recomendo utilizar a resolução de DNS local para permitir a utilização e identificação de diferentes clientes. Pesquisem sobre o arquivo `/etc/hosts`
+5. Buscar Dados de Criptomoedas Usando uma API
+Como usuário, quero que o aplicativo use uma API confiável para fornecer informações
+precisas e atualizadas sobre criptomoedas.
+Motivação: Quero garantir que os dados exibidos estejam sempre corretos e em tempo
+real.
+Critérios de Aceitação:
+● O aplicativo deve integrar-se com uma API gratuita, como CoinGecko ou CoinCap,
+para obter informações de criptomoedas.
+● Dados como preço, variação percentual e volume devem ser atualizados em tempo
+real.
+● Em caso de falha na API, o sistema deve exibir uma mensagem informando o erro.
 
-</aside>
+6. Critério de avaliação
+Técnicos
+● Qualidade do Código
+○ Código limpo, organizado e bem estruturado.
+○ Uso de boas práticas como nomenclatura clara, modularização, e
+comentários objetivos.
+○ Adesão a padrões de desenvolvimento (ex.: SOLID, DRY, KISS).
+● Segurança
+○ Implementação de boas práticas de segurança (ex.: validação de entradas,
+proteção contra injeção de código).
 
-### Critérios de aceite
+● Performance
+○ Soluções otimizadas para evitar gargalos de desempenho.
+○ Uso eficiente de recursos, como consultas ao banco e chamadas de API.
 
-- [ ]  Deve ser feito usando Flutter
-- [ ]  Deve ter a funcionalidade de Login
-- [ ]  Deve ser possível listar e filtrar os produtos
-    - [ ]  A consulta de produtos deve bater na API que montou, e não diretamente na API de fornecedores
-- [ ]  Deve ter a funcionalidade de Whitelabel
-    - [ ]  A aplicação deve ter variações no tema a depender do cliente que estiver acessando a aplicação. Exemplo: Se acessarmos http://devnology.com:8000 o site vai ter a cor primária o verde, mas se acessarmos http://in8.com:8000 o site vai ser roxo
-- [ ]  Documentação da arquitetura utilizada no repositório
-</p>
-<p>
-  
-  ### API
-
-Fica a critério de cada um a forma de persistir os dados, mas o motivo de determinada tecnologia ter sido escolhida vai ser avaliada na próxima etapa.
-
-### Critérios de aceite
-
-- [ ]  Deve ser feito usando NestJS
-- [ ]  Deve ter a funcionalidade de Login
-- [ ]  Deve ter a funcionalidade para diferenciar os clientes
-- [ ]  Collection e Documentação dos endpoints
-- [ ]  Criar DER do Banco de Dados
-</p>
+Conceituais
+● Capacidade de Argumentação
+○ Clareza ao justificar decisões técnicas tomadas no projeto.
+○ Explicação lógica para o uso de tecnologias, padrões de projeto ou
+estratégias adotadas.
+● Conhecimento de Padrões
+○ Aplicação de padrões de projeto quando necessário (ex.: Factory, Singleton,
+Observer).
+○ Conhecimento prático de princípios SOLID e como eles influenciaram a
+arquitetura.
 
 ## Instalação
-1. Clone e configure a API que está nesse repositório (no repositório tem o tutorial)
+1. Clone o repósitorio do aplicativo
 ```bash
-  https://github.com/EduardoGomesSa/api-whitelabel
+  git clone https://github.com/EduardoGomesSa/crypto_app.git
 ```
-2. Clone o repósitorio do aplicativo
-```bash
-  git clone https://github.com/EduardoGomesSa/app_whitelabel.git
-```
-3. Crie um .env na raiz do projeto
-4. Coloque o endereço da sua api na variável API_URL
-5. Instale as dependências
+2. Crie um .env na raiz do projeto
+3. Instale as dependências
 ```bash
   flutter pub get
 ```
 ## Funcionalidades
-- ``Login``: usuários podem logar-se com e-mail e senha
-- ``Logout``: Usuários podem sair do app quando desejarem
-- ``Ordernação por preço``: Usuário pode visualizar produtos pelo maior ou menor valor
-- ``Buscar por nome``: usuário pode buscar produtos pelo nome ou partes dele
-- ``Informações do produto``: Usuário pode ver detalhes do produto
-- ``Whitelabel``: layout do app muda dependendo do cliente
+- ``Buscar todas as cryptomoedas``: Ao inicializar o app, todas as cryptomoedas são buscadas em uma api.
+- ``Buscar por nome ou symbol``: Usuário pode buscar uma cryptomoeda por vários parametros.
+- ``Favoritar cryptomoedas``: Usuário pode salvar cryptomoedas do seu interesse para facilitar o acompanhamento.
+- ``Desfavoritar cryptomoeda``: Usuário pode remover uma crypto da sua coleção.
+- ``Limpar favoritos``: Usuário pode remover todas as cryptos de uma vez da lista de favoritas.
   
 ## Tecnologias
 - ``Flutter``: Framework multiplataforma que usa Dart para criar apps nativos com alta performance e código seguro.
 - ``GetX``: Biblioteca para Flutter que oferece gerenciamento de estado, injeção de dependência e navegação de forma simples e eficiente.
 - ``Dio``: Cliente HTTP para Flutter com suporte a interceptors, timeouts, cancelamento de requisições e recursos avançados de rede.
-- ``shared_preferences``: Armazenamento local simples para salvar dados leves como configurações e preferências do usuário.
 - ``fluttertoast``: Biblioteca para exibir mensagens rápidas (toasts) na tela, útil para feedbacks imediatos ao usuário, como erro ao fazer login, logout com sucesso, erro ao buscar produtos etc.
+- ``SQLite``: Banco de dados leve e que pode ser utulizado para armazenamento de dados em dispositivos movéis.
 
 ## Arquitetura
 
 <p>
-  Como o teste foi um app pequeno, com poucas telas, o padrão escolhido foi o MVC com adição da camada de Repositories, que são os responsáveis por realizar as requisições a API.
+  Como o teste foi um app pequeno, com poucas telas, o padrão escolhido foi o MVC com adição da camada de Repositories, que são os responsáveis por realizar as requisições a API e ao banco de dados interno (SQLite).
 </p>
 
 - ``Pages``: São as telas exibidas aos usuários
@@ -121,7 +155,3 @@ Fica a critério de cada um a forma de persistir os dados, mas o motivo de deter
   <img src="https://github.com/user-attachments/assets/0adb92a9-d3b2-4818-a4cf-38d9eae52296" alt="register_app" width="250" />
   &nbsp;&nbsp;&nbsp;
 </p>
-
-## Observação
-<p>⚠️ Atenção! ⚠️ O provedor de imagens dos produtos que vinham da API passada para o teste está fora do ar há um tempo, então eu utilizei uma abordagem alternativa, por isso as imagens de produtos são todas iguais,
-mas elas mudam conforme o usuário abre o app, é apenas para servir de ilustração.</p>
