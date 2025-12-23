@@ -118,6 +118,7 @@ arquitetura.
 - ``Dio``: Cliente HTTP para Flutter com suporte a interceptors, timeouts, cancelamento de requisições e recursos avançados de rede.
 - ``fluttertoast``: Biblioteca para exibir mensagens rápidas (toasts) na tela, útil para feedbacks imediatos ao usuário, como erro ao fazer login, logout com sucesso, erro ao buscar produtos etc.
 - ``SQLite``: Banco de dados leve e que pode ser utulizado para armazenamento de dados em dispositivos movéis.
+- ``fl_chart``: Package para gerar gráficos.
 
 ## Arquitetura
 
@@ -131,27 +132,16 @@ arquitetura.
 - ``Repositories``: Camada extra adicionada ao MVC para retirar do model a responsabilidade de lidar com as requisições, o que facilita a manutenção do código
 - ``Core``: Responsável por armazenar recursos que serão compartilhados por toda a aplicação, como services, widgets personalizados, routes etc
 - ``Bindings``: Responsável por definir quais controllers, serviços ou repositórios devem ser criados quando uma rota for aberta.
-<img width="253" height="438" alt="image" src="https://github.com/user-attachments/assets/ae2bf7e0-8632-4b42-a878-b25b84b4ddd0" />
+<img width="253" height="438" alt="image" src="https://github.com/user-attachments/assets/94c889a2-e27e-4064-a086-c64a751ccb08" />
+
 
 ## Telas
-### Auth
-<p align="left">
-  <img src="https://github.com/user-attachments/assets/a0f690bb-5952-4dd1-aead-c9656cd6d0f0" alt="login_app" width="250" />
-  &nbsp;&nbsp;&nbsp;
-</p>
-
-### Tela de usuários de empresas diferentes
-<p align="left">
-  <img src="https://github.com/user-attachments/assets/8879ce3d-a0f0-4992-ab8a-8c8579931c13" alt="login_app" width="250" />
-  &nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/user-attachments/assets/2f62f1eb-9619-4bc7-9f92-08fc78d8cd3e" alt="register_app" width="250" />
-  &nbsp;&nbsp;&nbsp;
-</p>
 
 ### Exemplos em funcionamento
 <p align="left">
-  <img src="https://github.com/user-attachments/assets/08853f89-5c8e-43d7-9ee5-39786213420d" alt="login_app" width="250" />
+  <img src="https://github.com/user-attachments/assets/50d12a02-ee1b-41cd-bd72-c6124dbab681" alt="login_app" width="250" />
   &nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/user-attachments/assets/0adb92a9-d3b2-4818-a4cf-38d9eae52296" alt="register_app" width="250" />
+  <img src="https://github.com/user-attachments/assets/ebb68efd-d18d-406c-8a39-45a96adc09c5" alt="register_app" width="250" />
   &nbsp;&nbsp;&nbsp;
+
 </p>
