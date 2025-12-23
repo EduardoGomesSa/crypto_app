@@ -39,49 +39,49 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Obx(() {
-                if (cryptoController.isLoading.value) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-
-                if (cryptoController.filteredCryptos.isEmpty) {
-                  return const Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.money_off_outlined,
-                          size: 80,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(height: 16),
-                        Text(
-                          'Nenhuma criptomoeda encontrada',
-                          style: TextStyle(fontSize: 16, color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                  );
-                }
-
-                return RefreshIndicator(
-                  key: refreshIndicatorKey,
-                  onRefresh: () async {
-                    searchController.clear();
-                    searchCryptos('');
-                    await cryptoController.getAllCoins();
-                  },
-                  child: ListView.builder(
+              child: RefreshIndicator(
+                key: refreshIndicatorKey,
+                onRefresh: () async {
+                      searchController.clear();
+                      searchCryptos('');
+                      await cryptoController.getAllCoins();
+                    },
+                child: Obx(() {
+                  if (cryptoController.isLoading.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                
+                  if (cryptoController.filteredCryptos.isEmpty) {
+                    return const Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.money_off_outlined,
+                            size: 80,
+                            color: Colors.grey,
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            'Nenhuma criptomoeda encontrada',
+                            style: TextStyle(fontSize: 16, color: Colors.grey),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                
+                  return ListView.builder(
                     itemCount: cryptoController.filteredCryptos.length,
                     itemBuilder: (context, index) {
                       final crypto = cryptoController.filteredCryptos[index];
                       return CryptoCard(model: crypto);
                     },
-                  ),
-                );
-              }),
+                  );
+                }),
+              ),
             ),
           ],
         ),

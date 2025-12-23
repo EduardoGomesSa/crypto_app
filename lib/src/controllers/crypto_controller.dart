@@ -28,7 +28,6 @@ class CryptoController extends GetxController {
     super.onInit();
 
     getAllCoins();
-    filteredCryptos.assignAll(listCryptos);
   }
 
   getAllCoins() async {
@@ -49,6 +48,7 @@ class CryptoController extends GetxController {
       }
 
       listCryptos.assignAll(finalListCoins);
+      filteredCryptos.assignAll(listCryptos);
     } else {
       appUtils.showToast(message: result.message!, isError: true);
     }
