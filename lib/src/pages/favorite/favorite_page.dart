@@ -58,19 +58,19 @@ class FavoritePage extends StatelessWidget {
         }
 
         if (favoriteController.favoriteCryptos.isEmpty) {
-          return const Center(
+          return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 16,
               children: [
                 Icon(
-                  Icons.star_border,
-                  size: 80,
-                  color: Colors.grey,
+                  Icons.heart_broken,
+                  size: 100,
+                  color: Colors.grey.withValues(alpha: 0.6),
                 ),
-                SizedBox(height: 16),
-                Text(
+                const Text(
                   'Nenhuma criptomoeda favorita ainda',
-                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                  style: TextStyle(fontSize: 18, color: Colors.grey),
                 ),
               ],
             ),
