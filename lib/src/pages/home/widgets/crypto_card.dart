@@ -1,3 +1,4 @@
+import 'package:crypto_app/src/core/ui/formatters.dart';
 import 'package:crypto_app/src/core/widgets/favorite_icon_widget.dart';
 import 'package:crypto_app/src/models/crypto_model.dart';
 import 'package:crypto_app/src/pages/crypto/crypto_page.dart';
@@ -34,7 +35,7 @@ class CryptoCard extends StatelessWidget {
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('\$${model.currentPrice!.toStringAsFixed(2)}'),
+                Text(CurrencyFormatter.usd(model.currentPrice!)),
                 FavoriteIconWidget(model: model),
               ],
             ),

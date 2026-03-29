@@ -1,4 +1,5 @@
 import 'package:crypto_app/src/controllers/crypto_controller.dart';
+import 'package:crypto_app/src/core/ui/formatters.dart';
 import 'package:crypto_app/src/core/widgets/favorite_icon_widget.dart';
 import 'package:crypto_app/src/models/crypto_model.dart';
 import 'package:crypto_app/src/pages/crypto/widgets/crypto_line_chart.dart';
@@ -62,7 +63,7 @@ class CryptoPage extends StatelessWidget {
 
             Center(
               child: Text(
-                '\$${model.currentPrice!.toStringAsFixed(2)}',
+                CurrencyFormatter.usd(model.currentPrice!),
                 style: const TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
@@ -92,13 +93,11 @@ class CryptoPage extends StatelessWidget {
               children: [
                 InfoItem(
                   label: 'Volume',
-                  value:
-                      '\$${model.totalVolume!.toStringAsFixed(0)}',
+                  value: CurrencyFormatter.usd(model.totalVolume!),
                 ),
                 InfoItem(
                   label: 'Market Cap',
-                  value:
-                      '\$${model.marketCap!.toStringAsFixed(0)}',
+                  value: CurrencyFormatter.usd(model.marketCap!),
                 ),
               ],
             ),
