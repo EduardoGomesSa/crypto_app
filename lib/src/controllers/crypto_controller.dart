@@ -1,3 +1,4 @@
+import 'package:crypto_app/src/core/ui/formatters.dart';
 import 'package:crypto_app/src/core/utils/api_result.dart';
 import 'package:crypto_app/src/core/utils/app_utils.dart';
 import 'package:crypto_app/src/models/crypto_chart_point_model.dart';
@@ -22,6 +23,8 @@ class CryptoController extends GetxController {
   RxList<CryptoChartPointModel> listChartPoints =
       RxList<CryptoChartPointModel>([]);
   RxList<CryptoModel> filteredCryptos = <CryptoModel>[].obs;
+  RxBool isBrl = false.obs;
+  RxDouble dolarExchangeRate = 0.0.obs;
 
   @override
   void onInit() {
@@ -87,5 +90,34 @@ class CryptoController extends GetxController {
         return name.contains(query) || symbol.contains(query);
       }).toList(),
     );
+  }
+
+  Future<void> toggleCurrency() async {
+    if (isBrl.value) {
+      isBrl.value = false;
+    } else {
+      if (dolarExchangeRate.value == 0.0) {
+        isLoading.value = true;
+        final result = await repository.getDolarValueInReal();
+        isLoading.value = false;
+
+        if (!result.isError) {
+          dolarExchangeRate.value = result.data!;
+          isBrl.value = true;
+        } else {
+          appUtils.showToast(message: result.message!, isError: true);
+        }
+      } else {
+        isBrl.value = true;
+      }
+    }
+  }
+
+  String formatPrice(double priceInUsd) {
+    if (isBrl.value) {
+      return CurrencyFormatter.brl(priceInUsd * dolarExchangeRate.value);
+    }
+
+    return CurrencyFormatter.usd(priceInUsd);
   }
 }

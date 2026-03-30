@@ -44,7 +44,7 @@ class CryptoRepository {
     if (response is! Map || response['prices'] != null) {
       final List prices = response['prices'];
 
-       final chartPoints = CryptoChartPointModel.fromList(prices);
+      final chartPoints = CryptoChartPointModel.fromList(prices);
 
       return ApiResult<List<CryptoChartPointModel>>(data: chartPoints);
     }
@@ -53,5 +53,28 @@ class CryptoRepository {
       message: "Erro ao buscar as cryptomoedas. Tente novamente!",
       isError: true,
     );
+  }
+
+  Future<ApiResult<double>> getDolarValueInReal() async {
+    try {
+      final response = await httpManager.request(
+        url: Url.dolarToReal,
+        method: HttpMethods.get,
+      );
+
+      if (response['USDBRL'] != null && response['USDBRL']['ask'] != null) {
+        return ApiResult<double>(data: double.parse(response['USDBRL']['ask']));
+      }
+
+      return ApiResult<double>(
+        message: "Erro ao buscar a cotação do dólar para o real.",
+        isError: true,
+      );
+    } catch (e) {
+      return ApiResult<double>(
+        message: "Erro interno ao buscar a cotação.",
+        isError: true,
+      );
+    }
   }
 }

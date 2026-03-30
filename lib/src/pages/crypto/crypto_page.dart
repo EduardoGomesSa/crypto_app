@@ -1,5 +1,4 @@
 import 'package:crypto_app/src/controllers/crypto_controller.dart';
-import 'package:crypto_app/src/core/ui/formatters.dart';
 import 'package:crypto_app/src/core/widgets/favorite_icon_widget.dart';
 import 'package:crypto_app/src/models/crypto_model.dart';
 import 'package:crypto_app/src/pages/crypto/widgets/crypto_line_chart.dart';
@@ -24,6 +23,12 @@ class CryptoPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(model.name!),
         actions: [
+          IconButton(
+            onPressed: () {
+              cryptoController.toggleCurrency();
+            },
+            icon: const Icon(Icons.money),
+          ),
           Padding(
             padding: const EdgeInsets.only(right: 25),
             child: FavoriteIconWidget(model: model),
@@ -58,21 +63,17 @@ class CryptoPage extends StatelessWidget {
                 ],
               ),
             ),
-
             const SizedBox(height: 24),
-
             Center(
-              child: Text(
-                CurrencyFormatter.usd(model.currentPrice!),
-                style: const TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              child: Obx(() => Text(
+                    cryptoController.formatPrice(model.currentPrice!),
+                    style: const TextStyle(
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )),
             ),
-
             const SizedBox(height: 4),
-
             Center(
               child: Text(
                 '${model.priceChangePercentage24h!.toStringAsFixed(2)}%',
@@ -85,25 +86,21 @@ class CryptoPage extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(height: 16),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                InfoItem(
-                  label: 'Volume',
-                  value: CurrencyFormatter.usd(model.totalVolume!),
-                ),
-                InfoItem(
-                  label: 'Market Cap',
-                  value: CurrencyFormatter.usd(model.marketCap!),
-                ),
+                Obx(() => InfoItem(
+                      label: 'Volume',
+                      value: cryptoController.formatPrice(model.totalVolume!),
+                    )),
+                Obx(() => InfoItem(
+                      label: 'Market Cap',
+                      value: cryptoController.formatPrice(model.marketCap!),
+                    )),
               ],
             ),
-
             const SizedBox(height: 24),
-
             Obx(() {
               if (cryptoController.listChartPoints.isEmpty) {
                 return const SizedBox(

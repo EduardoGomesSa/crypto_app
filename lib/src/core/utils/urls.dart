@@ -9,4 +9,6 @@ abstract class Url {
 
   static String marketChart(String cryptoId) =>
       '$_baseUrl/$cryptoId/market_chart?vs_currency=usd&days=1';
+
+  static String dolarToReal = dotenv.env['DOLAR_API_URL'] ?? '';
 }
